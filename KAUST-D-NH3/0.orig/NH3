@@ -10,7 +10,7 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    object      CH4;
+    object      NH3;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -20,10 +20,10 @@ internalField   uniform 0;
 
 boundaryField
 {
-    inletCH4
+    inletNH3
     {
         type            fixedValue;
-        value           uniform 0.1561;
+        value           uniform 0.189;
     }
 
     wallOutside
