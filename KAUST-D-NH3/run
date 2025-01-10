@@ -1,0 +1,74 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+./clean
+
+restore0Dir
+
+runApplication blockMesh
+
+runApplication decomposePar
+
+runApplication setFields
+
+if isTest "$@"
+then
+    # Test without chemistry
+    foamDictionary constant/chemistryProperties -entry chemistry -set off
+
+    runParallel $(getApplication)
+
+else
+    # Run without chemistry until 1500 to let the flow field develop
+    
+    foamDictionary system/controlDict -entry startTime -set 0
+    
+    foamDictionary system/controlDict -entry writeInterval -set 1500
+
+    foamDictionary system/controlDict -entry endTime -set 1500
+
+    foamDictionary constant/chemistryProperties -entry chemistry -set off
+
+    runParallel $(getApplication)
+
+    # Run with chemistry with upwind schemes until flame reaches its full size
+    
+    foamDictionary system/controlDict -entry startTime -set 1500
+    
+    foamDictionary system/controlDict -entry writeInterval -set 100
+
+    foamDictionary system/controlDict -entry endTime -set 5000
+
+    foamDictionary constant/chemistryProperties -entry chemistry -set on
+    
+    foamDictionary system/fvSchemes -entry divSchemes.div\(phi,U\) -set "Gauss upwind"
+    
+    foamDictionary system/fvSchemes -entry divSchemes.div\(phi,k\) -set "Gauss upwind"
+    
+    foamDictionary system/fvSchemes -entry divSchemes.div\(phi,epsilon\) -set "Gauss upwind"
+
+    runParallel $(getApplication)
+    
+    # Run the remainder of the simulation until the final time with higher order discretization
+    
+    foamDictionary system/controlDict -entry startTime -set 5000
+
+    foamDictionary system/controlDict -entry endTime -set 25000
+    
+    foamDictionary system/fvSchemes -entry divSchemes.div\(phi,U\) -set "Gauss limitedLinearV 1"
+    
+    foamDictionary system/fvSchemes -entry divSchemes.div\(phi,k\) -set "Gauss limitedLinear 1"
+    
+    foamDictionary system/fvSchemes -entry divSchemes.div\(phi,epsilon\) -set "Gauss limitedLinear 1"
+
+    runParallel -o $(getApplication)
+    
+fi
+    
+runApplication reconstructPar
+    
+rm -rf processor*
+
+#------------------------------------------------------------------------------
