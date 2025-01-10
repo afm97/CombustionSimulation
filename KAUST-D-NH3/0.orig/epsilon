@@ -16,7 +16,7 @@ FoamFile
 
 dimensions      [0 2 -3 0 0 0 0];
 
-internalField   uniform 30000;
+internalField   uniform 25300;
 
 boundaryField
 {
@@ -26,14 +26,14 @@ boundaryField
         Cmu             0.09;
         kappa           0.41;
         E               9.8;
-        value           uniform 30000;
+        value           uniform 25300;
     }
 
     outlet
     {
         type            inletOutlet;
-        inletValue      uniform 30000;
-        value           uniform 30000;
+        inletValue      uniform 25300;
+        value           uniform 25300;
     }
 
     inletPilot
@@ -58,10 +58,10 @@ boundaryField
         Cmu             0.09;
         kappa           0.41;
         E               9.8;
-        value           uniform 30000;
+        value           uniform 25300;
     }
 
-    inletCH4
+    inletNH3
     {
         type            turbulentMixingLengthDissipationRateInlet;
         mixingLength    0.000504;

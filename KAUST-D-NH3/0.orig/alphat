@@ -52,7 +52,7 @@ boundaryField
         value           $internalField;
     }
 
-    inletCH4
+    inletNH3
     {
         type            calculated;
         value           $internalField;

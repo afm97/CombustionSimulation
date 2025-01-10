@@ -51,7 +51,7 @@ boundaryField
         type            zeroGradient;
     }
 
-    inletCH4
+    inletNH3
     {
         type            zeroGradient;
     }

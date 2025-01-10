@@ -35,7 +35,7 @@ boundaryField
     inletPilot
     {
         type            fixedValue;
-        value           uniform 1.29e-4;
+        value           uniform 0;
     }
 
     inletAir
@@ -49,10 +49,10 @@ boundaryField
         type            zeroGradient;
     }
 
-    inletCH4
+    inletNH3
     {
         type            fixedValue;
-        value           uniform 0;
+        value           uniform 0.025;
     }
 
     frontAndBack_pos

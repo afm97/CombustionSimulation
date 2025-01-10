@@ -49,7 +49,7 @@ boundaryField
         type            zeroGradient;
     }
 
-    inletCH4
+    inletNH3
     {
         type            fixedValue;
         value           uniform 0;

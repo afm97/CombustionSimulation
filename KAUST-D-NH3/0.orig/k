@@ -53,7 +53,7 @@ boundaryField
         value           uniform 30;
     }
 
-    inletCH4
+    inletNH3
     {
         type            turbulentIntensityKineticEnergyInlet;
         intensity       0.0458;

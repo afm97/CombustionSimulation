@@ -20,10 +20,10 @@ internalField   uniform 0.23;
 
 boundaryField
 {
-    inletCH4
+    inletNH3
     {
         type            fixedValue;
-        value           uniform 0.1966;
+        value           uniform 0.156;
     }
 
     wallOutside
@@ -39,7 +39,7 @@ boundaryField
     inletPilot
     {
         type            fixedValue;
-        value           uniform 0.054;
+        value           uniform 0.016;
     }
 
     inletAir

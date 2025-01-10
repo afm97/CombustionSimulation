@@ -16,14 +16,14 @@ FoamFile
 
 dimensions      [0 0 0 1 0 0 0];
 
-internalField   uniform 300;
+internalField   uniform 350;
 
 boundaryField
 {
-    inletCH4
+    inletNH3
     {
         type            fixedValue;
-        value           uniform 294;
+        value           uniform 320;//293.5
     }
 
     wallOutside
@@ -39,20 +39,20 @@ boundaryField
     inletPilot
     {
         type            fixedValue;
-        value           uniform 1880;
+        value           uniform 2047;
     }
 
     inletAir
     {
         type            fixedValue;
-        value           uniform 291;
+        value           uniform 350; //295.6
     }
 
     outlet
     {
          type            inletOutlet;
-        inletValue      uniform 300;
-        value           uniform 300;
+        inletValue      uniform 350; //300
+        value           uniform 350; //300
     }
 
     frontAndBack_pos
