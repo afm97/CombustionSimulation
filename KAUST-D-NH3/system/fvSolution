@@ -85,7 +85,8 @@ PIMPLE
     Yref
     {
         O2                  0.1;
-        CH4                 0.1;
+        NH3                 0.1;
+        H2                  0.1;
     }
     rDeltaTSmoothingCoeff   0.025;
     rDeltaTDampingCoeff     1;
@@ -95,7 +96,7 @@ relaxationFactors
 {
     equations
     {
-        ".*"            1;
+        ".*"            0.6;
     }
 }
 

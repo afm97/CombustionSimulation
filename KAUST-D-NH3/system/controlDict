@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  v2312                                 |
+|  \\    /   O peration     | Version:  2312                                  |
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -18,17 +18,17 @@ application     reactingFoam;
 
 startFrom       latestTime;
 
-startTime       0;
+startTime       5000;
 
 stopAt          endTime;
 
-endTime         1500;
+endTime         25000;
 
 deltaT          1;
 
 writeControl    runTime;
 
-writeInterval   1500;
+writeInterval   100;
 
 purgeWrite      0;
 
