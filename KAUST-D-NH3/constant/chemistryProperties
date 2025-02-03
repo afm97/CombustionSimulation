@@ -16,73 +16,30 @@ FoamFile
 
 chemistryType
 {
-    solver          ode;
-    method          TDAC;
+    chemistrySolver ode;
+    chemistryThermo psi;
 }
 
 chemistry       off;
 
-importantSpecies
+initialChemicalTimeStep 1e-08;
+
+sequentialCoeffs
 {
-    CO2             ;
-    H2O             ;
-    CH4             ;
-    O2              ;
+    cTauChem        0.001;
 }
 
-initialChemicalTimeStep 1e-07;
+EulerImplicitCoeffs
+{
+    cTauChem        0.05;
+    equilibriumRateLimiter on;
+}
 
 odeCoeffs
 {
-    solver          seulex;
-    absTol          1e-12;
-    relTol          1e-07;
-}
-
-reduction
-{
-    active          on;
-    log             on;
-    tolerance       0.0001;
-    method          DAC;
-    initialSet
-    {
-        CO              ;
-        CH4             ;
-        HO2             ;
-    }
-    automaticSIS    off;
-    fuelSpecies
-    {
-        CH4             1;
-    }
-}
-
-tabulation
-{
-    active          on;
-    log             on;
-    printProportion off;
-    printNumRetrieve off;
-    tolerance       0.003;
-    method          ISAT;
-    scaleFactor
-    {
-        otherSpecies    1;
-        Temperature     10000;
-        Pressure        1e+15;
-        deltaT          1;
-    }
-    maxNLeafs       5000;
-    chPMaxLifeTime  1000;
-    maxGrowth       100;
-    checkEntireTreeInterval 500;
-    maxDepthFactor  2;
-    minBalanceThreshold 30;
-    MRURetrieve     false;
-    maxMRUSize      0;
-    growPoints      true;
-    maxNumNewDim    10;
+    solver          SIBS;
+    eps             0.05;
+    scale           1;
 }
 
 
